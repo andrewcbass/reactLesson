@@ -5,6 +5,25 @@
   <title>React</title>
   <script src="jspm_packages/system.js"></script>
   <script src="config.js"></script>
+  <style>
+    .cell {
+      height: 15vw;
+      width: 15vw;
+      border: 1px solid #777;
+      display: inline-block;
+      margin-right: 4px;
+      cursor: pointer;
+    }
+    .active {
+      background-color: blue;
+    }
+    .correct {
+      background-color: green;
+    }
+    .incorrect {
+      background-color: red;
+    }
+  </style>
 </head>
 <body>
   <div id="react"></div>
