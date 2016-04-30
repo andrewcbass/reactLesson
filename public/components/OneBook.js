@@ -1,6 +1,6 @@
 import React from "react";
 
-class Book extends React.Component {
+class OneBook extends React.Component {
   priceDisplay() {
     const { price } = this.props;
     if (price !== undefined) {
@@ -14,13 +14,13 @@ class Book extends React.Component {
   }
   render() {
     return (
-      <li onClick={this.props.removeItem.bind(null, this.props.id)}>
-        {this.props.id} : {this.props.name}
+      <div>
+        <h3>{this.props.name}</h3>
 
         {this.priceDisplay()}
-      </li>
+      </div>
     )
   }
 }
 
-export default Book;
+export default OneBook;

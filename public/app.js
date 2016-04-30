@@ -5,6 +5,7 @@ import List from "./components/List";
 import Book from "./components/Book";
 import Form from "./components/Form";
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -19,6 +20,12 @@ class App extends React.Component {
     };
     this.addItem = this.addItem.bind(this);
   }
+  removeItem(itemId) {
+    const currentItems = this.state.items;
+
+    this.setState({items: currentItems.filter(item => item.id !== itemId)});
+
+  }
   addItem(newBook) {
     const currentItems = this.state.items;
     this.setState({
@@ -28,7 +35,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <List items={this.state.items} component={Book} />
+        <List items={this.state.items}
+          component={Book}
+          removeItem={this.removeItem.bind(this)}/>
         <Form addItem={this.addItem}/>
       </div>
     )

@@ -1,4 +1,5 @@
 import React from "react";
+import Book from "./Book";
 
 class List extends React.Component {
   render() {
@@ -6,7 +7,8 @@ class List extends React.Component {
     return (
       <div>
         <ul>
-          {this.props.items.map(item => <Component key={item.id} {...item} />)}
+          {this.props.items.map(item =>
+            <Book key={item.id} {...item} removeItem={this.props.removeItem} />)}
         </ul>
       </div>
     );
