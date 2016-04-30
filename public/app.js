@@ -1,44 +1,30 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import List from "./components/List";
-import Book from "./components/Book";
-import Form from "./components/Form";
-
+import OneBook from "./components/OneBook";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      items: [
+      books: [
         { id: 1, name: "Learn React", price: 2999 },
         { id: 2, name: "Learn Flux"},
         { id: 3, name: "Learn GraphQL", price: 0 },
         { id: 4, name: "Learn Relay", price: 4999 }
       ],
+      currentBookIndex: 0
     };
-    this.addItem = this.addItem.bind(this);
   }
-  removeItem(itemId) {
-    const currentItems = this.state.items;
-
-    this.setState({items: currentItems.filter(item => item.id !== itemId)});
-
-  }
-  addItem(newBook) {
-    const currentItems = this.state.items;
-    this.setState({
-      items: currentItems.concat(newBook)
-    });
+  next() {
+    this.setState({currentBookIndex: this.state.currentBookIndex + 1});
   }
   render() {
     return (
       <div>
-        <List items={this.state.items}
-          component={Book}
-          removeItem={this.removeItem.bind(this)}/>
-        <Form addItem={this.addItem}/>
+        <OneBook {...this.state.books[this.state.currentBookIndex]} />
+        <button onClick={this.next.bind(this)}>Next</button>
       </div>
     )
   }
