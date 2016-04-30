@@ -20,11 +20,16 @@ class App extends React.Component {
   next() {
     this.setState({currentBookIndex: this.state.currentBookIndex + 1});
   }
+  isLastBook() {
+    return this.state.books.length === this.state.currentBookIndex + 1;
+  }
   render() {
     return (
       <div>
         <OneBook {...this.state.books[this.state.currentBookIndex]} />
-        <button onClick={this.next.bind(this)}>Next</button>
+        <button onClick={this.next.bind(this)} disabled={this.isLastBook()}>
+          Next
+        </button>
       </div>
     )
   }

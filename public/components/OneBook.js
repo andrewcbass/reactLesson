@@ -5,21 +5,29 @@ class OneBook extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { description: ""};
+    this.state = { description: "", currentDate: new Date().toLocaleDateString()};
   }
   componentWillMount() {
     console.log("Will Mount");
   }
   componentDidMount() {
     console.log("Did Mount");
+    // this.intervalId = setInterval(() => {
+    //   this.setState({currentDate: new Date().toLocaleDateString()})
+    // }, 1000)
     //get("/desc.txt").done(desc => this.setState({description: desc}));
   }
   componentWillUnmount() {
+    clearInterval(this.intervalId)
     console.log("Will unmount");
   }
-  shouldComponentUpdate() {
+  shouldComponentUpdate(_, nextState) {
     console.log("should update");
     return true;
+
+  }
+  componentWillUpdate() {
+    console.log("Will update");
   }
   componentDidUpdate() {
     console.log("Did update");
@@ -48,6 +56,8 @@ class OneBook extends React.Component {
         <h3>{this.props.name}</h3>
         {this.descriptionDisplay()}
         {this.priceDisplay()}
+        {this.state.currentDate}
+
       </div>
     )
   }
