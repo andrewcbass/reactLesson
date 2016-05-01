@@ -2,7 +2,9 @@ import React from "react";
 
 class Cell extends React.Component {
   handleClick() {
-    this.props.recordGuess(this.props.id, this.active());
+    if (this.props.canGuess) {
+      this.props.recordGuess(this.props.id, this.active());
+    }
   }
   active() {
     return this.props.randomCells.indexOf(this.props.id) >= 0;
@@ -15,7 +17,7 @@ class Cell extends React.Component {
   }
   render() {
     let className = "cell";
-    if (this.active()) {
+    if (this.props.shouldHighlight && this.active()) {
       className += " active";
     }
     if (this.correct()) {
